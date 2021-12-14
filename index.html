@@ -69,10 +69,10 @@
         let x = "";//первое число
         let y = "";//второе число
         let znak = ""; //знак действия
-        //коментарий тут!!!!
         function pervoe(znd) {
             x = res.innerHTML;
             znak = znd;
+            cl();
             console.log(x);
             console.log(znak);
         }
@@ -80,7 +80,7 @@
             y = res.innerHTML;
             switch (znak) {
                 case "+":
-                    res.innerHTML = x + y;
+                    res.innerHTML = parseFloat(x) + parseFloat(y);
                     break;
                 case "-":
                     res.innerHTML = x - y;
