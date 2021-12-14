@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc ПК1303</title>
+    <style>
+        #btn {
+            width: 30%;
+            margin-left: 35%;
+            margin-right: 35%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex-basis: 80px;
+            flex-grow: 1;
+        }
+
+        #res {
+            width: 30%;
+            margin-left: 35%;
+            margin-right: 35%;
+            display: block;
+            height: 70px;
+            border: 1px solid black;
+            text-align: right;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="res">0</p>
+    <div id="btn">
+        <button>что-то</button>
+        <button>совсем стереть</button>
+        <button onclick="cl()">стереть все</button>
+        <button onclick="clearOne()">стереть один</button>
+        <button onclick="obratnoe()">обратное</button>
+        <button onclick="stepen()">степень</button>
+        <button onclick="koren()">корень</button>
+        <button onclick="pervoe(this.innerHTML)">/</button>
+        <button onclick="numbers(this)">7</button>
+        <button onclick="numbers(this)">8</button>
+        <button onclick="numbers(this)">9</button>
+        <button onclick="pervoe(this.innerHTML)">*</button>
+        <button onclick="numbers(this)">4</button>
+        <button onclick="numbers(this)">5</button>
+        <button onclick="numbers(this)">6</button>
+        <button onclick="pervoe(this.innerHTML)">-</button>
+        <button onclick="numbers(this)">1</button>
+        <button onclick="numbers(this)">2</button>
+        <button onclick="numbers(this)">3</button>
+        <button onclick="pervoe(this.innerHTML)">+</button>
+        <button onclick="dot1()">.</button>
+        <button onclick="numbers(this)">0</button>
+        <button onclick="calc()">=</button>
+    </div>
+    <script>
+        let x="";//первое число
+        let y="";//второе число
+        let znak=""; //знак действия
+
+        function pervoe(znd){
+            x = res.innerHTML;
+            znak = znd;
+            console.log(x);
+            console.log(znak);
+        }
+        function calc() {
+            y = res.innerHTML;
+            switch (znak) {
+                case "+":
+                    res.innerHTML = x+y;
+                break;
+                case "-":
+                    res.innerHTML=x-y;
+                break;
+                case "*":
+                    res.innerHTML=x*y;
+                break;
+                case "/":
+                    res.innerHTML=x/y;
+                break;
+            }
+        }
+        let res = document.getElementById("res");
+        function numbers(num) {
+            if (res.innerHTML.startsWith("0")) {
+                clearOne();
+            }
+            if (res.innerHTML.length < 14) {
+                res.innerHTML += num.innerHTML;
+            }
+        }
+        function dot1() {
+            let a = res.innerHTML.indexOf(".");
+            console.log(a);
+            if (a==-1){
+                res.innerHTML+=".";
+            }
+        }
+        function cl() {
+            res.innerHTML = "0";
+        }
+        function clearOne() {
+            let newRes = res.innerHTML;
+            res.innerHTML = newRes.slice(0, -1);
+        }
+        function koren() {
+            let x = res.innerHTML;
+            x = Math.sqrt(x);
+            res.innerHTML = x;
+            if (res.innerHTML.length > 14) {
+                x = res.innerHTML.slice(0, 14);
+                res.innerHTML = x;
+            }
+        }
+        function stepen() {
+            let x = res.innerHTML;
+            x = Math.pow(x, 2);
+            res.innerHTML = x;
+        }
+        function obratnoe() {
+            let x = res.innerHTML;
+            x = 1 / x;
+            res.innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>
